@@ -1,0 +1,25 @@
+<div class="background">
+  <mat-card class="mat-elevation-z8">
+    <mat-card-header>
+      <img class="logo-itau" src="assets/images/itau_logo.png">
+    </mat-card-header>
+    <mat-card-content>
+      <form (keyup.enter)="logar()">
+        <mat-form-field appearance="outline">
+          <mat-label>Login</mat-label>
+          <input matInput [(ngModel)]="authLogin.login" name="login" placeholder="Login">
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Senha</mat-label>
+          <input matInput [type]="hide ? 'password' : 'text'" [(ngModel)]="authLogin.password" name="password"
+            placeholder="Senha">
+          <button mat-icon-button matSuffix (click)="hide = !hide">
+            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+        </mat-form-field>
+        <button mat-raised-button class='logar' (click)="logar()">Entrar</button>
+        <button mat-button class="esqueci-senha" (click)="openEsqueciSenhaDialog()">Esqueci minha senha</button>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>

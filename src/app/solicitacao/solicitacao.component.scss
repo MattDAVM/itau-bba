@@ -1,0 +1,37 @@
+.form-solicitacao {
+  margin: 0 1.25%;
+}
+
+table {
+  width: 100%;
+}
+
+.custom-inputs {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  width: 100%;
+  gap: 2.5%;
+}
+
+.item-title {
+  font-weight: bolder;
+  font-size: medium;
+}
+
+.item-sub-title {
+  font-weight: bolder;
+  font-size: small;
+  color: #8c8c8c;
+}
+
+.column-center-align {
+  .mat-header-cell {
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .mat-cell {
+    text-align: center;
+    justify-content: center;
+  }
+}

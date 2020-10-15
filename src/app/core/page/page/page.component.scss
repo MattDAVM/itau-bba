@@ -1,0 +1,33 @@
+@import "../../../../assets/scss/constants";
+
+.header {
+  height: 70px;
+  background-color: $primary;
+}
+
+mat-sidenav-content {
+  transition: all 0.4s ease;
+}
+mat-sidenav {
+  width: 60px;
+  transition: all 0.4s ease;
+  background: #ffffff;
+
+  &.opened {
+    width: 225px;
+  }
+}
+
+.opened-mat-sidenav-content {
+  margin-left: 225px !important;
+}
+
+.page {
+  height: 100vh;
+  display: grid;
+  grid-template-rows: 80px 1fr;
+}
+
+.container {
+  margin: 1em;
+}

@@ -1,0 +1,28 @@
+<mat-toolbar>
+  <mat-toolbar-row>
+    <img src="assets/images/itau_bba_logo.png">
+    <div class="menu-user">
+      <div class="help">
+        <button mat-button (click)="openAlertAjuda()">
+          <mat-icon>help_outline</mat-icon> ajuda
+        </button>
+        <mat-divider [vertical]="true"></mat-divider>
+      </div>
+      <div class='icons'>
+        <div class="perfil-circle">
+          AP
+        </div>
+        <div class="name-user">
+          <label class="title">Alfred Pennyworth</label>
+          <label class="sub-title">Wayne Enterprises</label>
+        </div>
+        <button mat-icon-button [matMenuTriggerFor]="menu">
+          <mat-icon>keyboard_arrow_down</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item>Logout</button>
+        </mat-menu>
+      </div>
+    </div>
+  </mat-toolbar-row>
+</mat-toolbar>

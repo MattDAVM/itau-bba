@@ -1,0 +1,14 @@
+<div class="container-dialog">
+  <div class="center-align">
+    <mat-icon class="icon-dialog-confirmacao">help</mat-icon>
+  </div>
+  <h2 class="title-card">{{pergunta}}</h2>
+  <div class="buttons">
+    <button mat-stroked-button color="warn" (click)="dialogRef.close()">
+      <mat-icon>close</mat-icon>Não
+    </button>
+    <button mat-raised-button class="btn-confirm" (click)="dialogRef.close(true)">
+      <div class="bold">Sim</div>
+    </button>
+  </div>
+</div>

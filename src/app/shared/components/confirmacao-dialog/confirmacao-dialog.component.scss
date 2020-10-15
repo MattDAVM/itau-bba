@@ -1,0 +1,27 @@
+
+.title-card {
+  font-size: 16px !important;
+  font-weight: bold;
+  text-align: center;
+}
+
+.buttons {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1em;
+  .bold {
+    font-weight: bold;
+  }
+}
+.center-align {
+  text-align: center;
+}
+
+.icon-dialog-confirmacao {
+  color: white;
+  background: #f07323;
+  border-radius: 100%;
+  height: 80px;
+  width: 80px;
+  font-size: 80px;
+}

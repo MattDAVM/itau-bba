@@ -1,0 +1,61 @@
+<mat-card class="mat-elevation-z0">
+  <mat-card-header>
+    <mat-card-title>
+      Nova Solicitação
+    </mat-card-title>
+    <mat-card-subtitle>
+      insira aqui os dados cadastrais para uma nova solicitação
+    </mat-card-subtitle>
+  </mat-card-header>
+  <div class="form-solicitacao ">
+    <div class="container-inputs">
+      <mat-form-field class="col-size-2 full-width">
+        <mat-label>Empresa</mat-label>
+        <input matInput [(ngModel)]="solicitacao.empresa" name="empresa" [readonly]="!data.isEdit">
+      </mat-form-field>
+      <mat-form-field class="col-size-1 full-width">
+        <mat-label>CNPJ</mat-label>
+        <input matInput [(ngModel)]="solicitacao.cnpj" mask="00.000.000/0000-00"  [readonly]="!data.isEdit">
+      </mat-form-field>
+      <mat-form-field class="col-size-1 full-width">
+        <mat-label>Plano</mat-label>
+        <mat-select [(ngModel)]="solicitacao.plano" [disabled]="!data.isEdit">
+          <mat-option *ngFor="let plano of planos" [value]="plano">
+            {{plano}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <span class="col-size-2"></span>
+      <mat-form-field class="col-size-1 full-width">
+        <mat-label>Tarifa</mat-label>
+        <span matPrefix>R$ &nbsp;</span>
+        <input matInput [(ngModel)]="solicitacao.tarifa" mask="separator.2" thousandSeparator="."  name="tarifa" [readonly]="!data.isEdit">
+      </mat-form-field>
+      <mat-form-field class="col-size-1 full-width">
+        <mat-label>Minutos</mat-label>
+        <input matInput type="number" [(ngModel)]="solicitacao.minutos" name="minutos" [readonly]="!data.isEdit">
+      </mat-form-field>
+      <mat-form-field class="col-size-1 full-width">
+        <mat-label>Valor do Plano</mat-label>
+        <span matPrefix>R$ &nbsp;</span>
+        <input matInput name="vplano" mask="separator.2" thousandSeparator="."  [(ngModel)]="solicitacao.vplano" [readonly]="!data.isEdit">
+      </mat-form-field>
+      <mat-form-field class="col-size-1 full-width">
+        <mat-label>Data de Adesão</mat-label>
+        <input matInput readonly (click)="pickerDateAdesao.open()" [matDatepicker]="pickerDateAdesao" name="dateAdesao"
+          [disabled]="!data.isEdit">
+        <mat-datepicker-toggle matSuffix [for]="pickerDateAdesao" [(ngModel)]="solicitacao.dateAdesao">
+        </mat-datepicker-toggle>
+        <mat-datepicker #pickerDateAdesao></mat-datepicker>
+      </mat-form-field>
+      <span class="col-size-1"></span>
+    </div>
+    <div class="center-align btn-actions">
+      <button mat-stroked-button color="warn" (click)="dialogRef.close()">
+        <mat-icon>close</mat-icon>Fechar
+      </button>
+      <button mat-raised-button *ngIf="data.isEdit" class="btn-confirm" (click)="editarSolicitacao()">Editar
+        Solicitação</button>
+    </div>
+  </div>
+</mat-card>

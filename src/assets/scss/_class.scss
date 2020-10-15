@@ -1,0 +1,32 @@
+@import "./constants";
+
+
+/*#region Grid*/
+.container-inputs {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  width: 100%;
+  gap: 1em;
+}
+
+//NUMERO DE COLUNAS
+.col-size-1 {
+  grid-column-start: span 1;
+}
+.col-size-2 {
+  grid-column-start: span 2;
+}
+.col-size-3 {
+  grid-column-start: span 3;
+}
+.col-size-4 {
+  grid-column-start: span 4;
+}
+.col-size-5 {
+  grid-column-start: span 5;
+}
+.col-size-6 {
+  grid-column-start: span 6;
+}
+
+/*#endregion Grid*/

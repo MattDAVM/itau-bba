@@ -1,0 +1,14 @@
+@import "../../../../../assets/scss/constants";
+
+mat-form-field {
+  width: 100%;
+}
+
+.grid-buttons {
+  width: 100%;
+  .button-send {
+    float: right;
+    color: white;
+    background-color: $orange;
+  }
+}

@@ -1,0 +1,142 @@
+<mat-card class="mat-elevation-z0">
+  <mat-card-header>
+    <mat-card-title>
+      Nova Solicitação
+    </mat-card-title>
+    <mat-card-subtitle>
+      insira aqui os dados cadastrais para uma nova solicitação
+    </mat-card-subtitle>
+  </mat-card-header>
+  <div class="form-solicitacao ">
+    <div class="container-inputs">
+      <mat-form-field class="col-size-2 full-width">
+        <mat-label>Empresa</mat-label>
+        <input matInput [(ngModel)]="solicitacao.empresa">
+      </mat-form-field>
+      <mat-form-field class="col-size-1 full-width">
+        <mat-label>CNPJ</mat-label>
+        <input matInput mask="00.000.000/0000-00" [(ngModel)]="solicitacao.cnpj">
+      </mat-form-field>
+      <mat-form-field class="col-size-1 full-width">
+        <mat-label>Plano</mat-label>
+        <mat-select [(ngModel)]="solicitacao.plano">
+          <mat-option *ngFor="let plano of planos" [value]="plano">
+            {{plano}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <span class="col-size-2"></span>
+      <mat-form-field class="col-size-1 full-width">
+        <mat-label>Tarifa</mat-label>
+        <span matPrefix>R$ &nbsp;</span>
+        <input matInput type="text" mask="separator.2" thousandSeparator="." [(ngModel)]="solicitacao.tarifa">
+      </mat-form-field>
+      <mat-form-field class="col-size-1 full-width">
+        <mat-label>Minutos</mat-label>
+        <input matInput type="number" [(ngModel)]="solicitacao.minutos">
+      </mat-form-field>
+      <mat-form-field class="col-size-1 full-width">
+        <mat-label>Valor do Plano</mat-label>
+        <span matPrefix>R$ &nbsp;</span>
+        <input matInput type="text" mask="separator.2" thousandSeparator="." [(ngModel)]="solicitacao.vplano">
+      </mat-form-field>
+      <mat-form-field class="col-size-1 full-width">
+        <mat-label>Data de Adesão</mat-label>
+        <input matInput readonly (click)="pickerDateAdesao.open()" [(ngModel)]="solicitacao.dateAdesao"
+          [matDatepicker]="pickerDateAdesao">
+        <mat-datepicker-toggle matSuffix [for]="pickerDateAdesao">
+        </mat-datepicker-toggle>
+        <mat-datepicker #pickerDateAdesao></mat-datepicker>
+      </mat-form-field>
+      <span class="col-size-1"></span>
+      <div class="col-size-1">
+        <button mat-flat-button class="btn-confirm" (click)="adicionarSolicitacao()">Adcionar Solicitação</button>
+      </div>
+    </div>
+  </div>
+</mat-card>
+<mat-card class="mat-elevation-z0">
+  <mat-card-header>
+    <mat-card-title>
+      Minhas Solicitações
+    </mat-card-title>
+    <mat-card-subtitle>
+      aqui você pode acompanhar o andamento de suas solicitações
+    </mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    <table class="mat-elevation-z0" mat-table [dataSource]="solicitacoes" class="mat-elevation-z8">
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef>Id</th>
+        <td mat-cell *matCellDef="let solicitacao"> {{solicitacao.id}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="empresa">
+        <th mat-header-cell *matHeaderCellDef> Empresa </th>
+        <td mat-cell *matCellDef="let solicitacao">
+          <label class="item-title">{{solicitacao.empresa}} </label>
+          <br />
+          <label class="item-sub-title">
+            CNPJ: {{solicitacao.cnpj}}
+          </label></td>
+      </ng-container>
+
+      <ng-container matColumnDef="plano">
+        <th mat-header-cell *matHeaderCellDef> Plano </th>
+        <td mat-cell *matCellDef="let solicitacao"> {{solicitacao.plano}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="tarifa">
+        <th mat-header-cell *matHeaderCellDef> Tarifa </th>
+        <td mat-cell *matCellDef="let solicitacao"> R$ {{solicitacao.tarifa}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="minutos">
+        <th mat-header-cell *matHeaderCellDef> Minutos </th>
+        <td mat-cell *matCellDef="let solicitacao"> {{solicitacao.minutos}} Min</td>
+      </ng-container>
+
+      <ng-container matColumnDef="vplano">
+        <th mat-header-cell *matHeaderCellDef> Valor Plano </th>
+        <td mat-cell *matCellDef="let solicitacao"> R$ {{solicitacao.vplano}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="dateAdesao">
+        <th mat-header-cell *matHeaderCellDef> Data Adesão </th>
+        <td mat-cell *matCellDef="let solicitacao">
+          {{solicitacao.dateAdesao | date:'dd/MM/yyyy'}}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="dateEmissao">
+        <th mat-header-cell *matHeaderCellDef> Data Envio </th>
+        <td mat-cell *matCellDef="let solicitacao">
+          {{solicitacao.dateEmissao  | date:'dd/MM/yyyy'}}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="acao">
+        <th mat-header-cell *matHeaderCellDef> Ação </th>
+        <td mat-cell *matCellDef="let solicitacao; let i = index">
+          <button mat-icon-button [matMenuTriggerFor]="menu">
+            <mat-icon>more_horiz</mat-icon>
+          </button>
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item (click)="openDialogSolicitacao(false, solicitacao._id)">
+              <mat-icon>assignment</mat-icon>Ver Detalhes
+            </button>
+            <button mat-menu-item (click)="openDialogSolicitacao(true, solicitacao._id)">
+              <mat-icon>edit</mat-icon>Editar
+            </button>
+            <button mat-menu-item color="btn-warn" (click)="deletarSolicitacao(solicitacao)">
+              <mat-icon>delete</mat-icon>Excluir
+            </button>
+          </mat-menu>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="colunasTabelaSolicitacoes"></tr>
+      <tr mat-row *matRowDef="let row; columns: colunasTabelaSolicitacoes;"></tr>
+    </table>
+  </mat-card-content>
+</mat-card>
